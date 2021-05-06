@@ -1,5 +1,19 @@
 function [state] = DVI_V(nz, nk, neta, param)
 
+% Value iteration algorithm to calculate v = f(z, eta, k). 
+
+% Args: 
+%       nz: number of the z grid
+%       neta: number of eta grid
+%       nk: number of k grid
+%       param: parameter structer
+
+% Return state struct with 
+%       Vs: value grid
+%       d: dividend grid
+%       trajectory: of consecutive change in v
+%       exp_Vs: expectation of v w.r.t t
+
 
 state = [];
 

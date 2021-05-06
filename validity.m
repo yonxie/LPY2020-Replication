@@ -1,3 +1,4 @@
+% This script check the distribution of lsat 120 quarters and 240 quarters.
 
 %% stationary
 

@@ -1,7 +1,20 @@
 function [v, d, phi, k, exps] = Calc_V(nz, neta, k, state, param)
 
 % calculate firm value for grid z, eta, k with different policies. 
-% return the maximum 
+
+% Args: 
+%       nz: number of the z grid
+%       neta: num ber of eta grid
+%       k: k state vector
+%       state: state generated from DVI algorithm
+%       param: parameter structer
+
+% Return: 
+%       v: value grid
+%       d: dividend grid
+%       phi: policy grid
+%       k: k state vector
+%       exps: expectation grid
 
 G = -param.r + param.g_x + 0.5 * param.sigma_x^2 - param.sigma_x*param.lmda_e;
 nk = length(k);
@@ -42,46 +55,12 @@ exps = E_kt1s_0_pure.*act0 + E_kt1s_1_pure.*act1;
 end
 
 
-% function [ex_vals_t] = expectation(action, nz, neta, ks, lmda_eta, delta, g_N, sigma_N, state, probs)
-% 
-% % Calculate expectation of E_t[exp(-lambda_eta, * eta_{t+1}) * v_{t+1}]
-% 
-% % Args:
-% %   nz: number of z
-% %   action: 
-% %   neta: number of eta
-% %   other parameters
-% 
-% 
-% % Return: expectation matrix at time t: nz * neta * nk
-% 
-% if action == 0
-%     k_t1 = (1-delta)*exp(-g_N-sigma_N*state.ETA)*ks';   % k_{t+1}: neta * nk
-% else
-%     k_t1 = ones(length(state.ETA), length(ks));         % k_{t+1}: neta * nk
-% end
-% 
-% vt1 = NaN(neta, nz, neta, length(ks));
-% 
-% for i = 1:nz
-%     for j = 1:neta
-% %         vt1_k = squeeze(state.Vs(i, j, :));
-%         model = state.phicps.(['phicp' num2str(i) num2str(j)]);
-%         vt1(j,i,:,:) = exp(-lmda_eta*state.ETA(j)) .*  ppval(model,k_t1);
-%     end
-% end
-% 
-% ex_vals_t = NaN(nz,neta,length(ks));
-% for i = 1:nz
-%     prob = squeeze(probs(i,:,:,:,:));
-%     ex_vals_t(i,:,:) = sum(sum(prob.*vt1, 1), 2);
-% end
-% 
-% end
                     
 function [ex_vals_t, ex_vals_t_pure] = expectation(action, nz, neta, ks, lmda_eta, delta, g_N, sigma_N, state)
+
 % Calculate expectation of E_t[exp(-lmda_eta.*eta_[t+1])*v_[t+1]]
-%Return: expectation matrix at time t:nz*neta*nk
+
+% Return: expectation matrix at time t:nz*neta*nk
 
 if action == 0
     k_t1 = (1-delta)*exp(-g_N-sigma_N * state.ETA)*ks'; 

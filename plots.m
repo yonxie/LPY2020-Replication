@@ -1,3 +1,4 @@
+% This script generate plots of dividend, value, policy w.r.t capital.
 
 state = load('state_tol_1e-05_kl_-3_kh_0.5_nk_2000_nz_9_neta_9.mat');
 % simu = load('simulation_npnls_1_nfirms_5000_tol_1e-05_kl_-3_kh_0.5_nk_2000_nk_2000_nz_9_neta_9.mat', 'simulations');

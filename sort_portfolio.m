@@ -1,3 +1,9 @@
+% This script analyzes the market simulation, including?
+% 1. market return, sharpe ratio and premium
+% 2. portfolio returns and sharpe ratio
+% 3. capital age and correlation
+% 4. asset pricing test on sorted portfolios. 
+
 r = 0.016 / 4;
 delta = 0.028; 
 g_N = 0.02 / 4;
